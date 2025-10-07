@@ -120,14 +120,14 @@ const reviews = [
             </div>
 
             <!-- Reseñas de Google -->
-            <div class="max-w-full mx-auto px-8 sm:px-12 lg:px-16">
+            <div class="max-w-full mx-auto px-8 sm:px-12 xl:px-16">
                 <!-- Layout responsive: Header arriba en móvil, a la izquierda en desktop -->
-                <div class="flex flex-col lg:flex-row lg:items-start lg:gap-6 overflow-hidden">
+                <div class="flex flex-col xl:flex-row xl:items-start xl:gap-6 overflow-hidden" id="testimonials-container">
                     <!-- Header de Google Reviews -->
-                    <div class="mb-8 lg:mb-0 lg:w-64 lg:flex-shrink-0 lg:mr-6">
+                    <div class="mb-8 xl:mb-0 xl:w-64 xl:flex-shrink-0 xl:mr-6" id="google-header">
                         <div class="bg-white rounded-lg p-6">
-                            <div class="text-center lg:text-left">
-                                <div class="text-2xl font-bold text-gray-800 mb-3  text-center ">EXCELENTE</div>
+                            <div class="text-center xl:text-left">
+                                <div class="text-2xl font-bold text-gray-800 mb-3 text-center">EXCELENTE</div>
                                 <div class="flex justify-center text-yellow-400 mb-3">
                                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                         <path
@@ -161,9 +161,9 @@ const reviews = [
 
                     <!-- Carrusel de reseñas -->
                     <div class="flex-1 min-w-0 lg:flex-[3] relative">
-                        <!-- Botón anterior -->
+                        <!-- Botón anterior - Solo visible en desktop -->
                         <button onclick="previousReview();"
-                            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-3 hover:bg-white hover: transition-all z-20 border border-gray-200">
+                            class="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-3 hover:bg-white hover:shadow-xl transition-all z-20 border border-gray-200">
                             <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -172,7 +172,7 @@ const reviews = [
                         </button>
 
                         <!-- Contenedor del carrusel -->
-                        <div class="mx-12 overflow-hidden">
+                        <div class="mx-0 md:mx-12 overflow-hidden">
                             <div id="reviews-carousel"
                                 class="flex transition-transform duration-300 ease-in-out">
                                 {reviews.map((review) => (
@@ -187,9 +187,9 @@ const reviews = [
                             </div>
                         </div>
 
-                        <!-- Botón siguiente -->
+                        <!-- Botón siguiente - Solo visible en desktop -->
                         <button onclick="nextReview();"
-                            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-3 hover:bg-white hover:transition-all z-20 border border-gray-200">
+                            class="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-3 hover:bg-white hover:shadow-xl transition-all z-20 border border-gray-200">
                             <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -206,19 +206,30 @@ const reviews = [
 <script>
     let currentReviewIndex = 0;
     const totalReviews = 13;
-    const reviewsPerView = 3; // Mostrar 3 cards a la vez
+    let reviewsPerView = 3; // Por defecto 3 cards en desktop
+    let startX = 0;
+    let isDragging = false;
+
+    // Función para detectar el tamaño de pantalla y ajustar reviewsPerView
+    function updateReviewsPerView() {
+        if (window.innerWidth < 768) { // md breakpoint
+            reviewsPerView = 1; // 1 card en móviles
+        } else {
+            reviewsPerView = 2; // 2  cards en desktop
+        }
+    }
 
     function updateReviewCarousel() {
         const carousel = document.getElementById('reviews-carousel');
         if (carousel) {
-            // Calcular el desplazamiento: cada card ocupa 33.333% del ancho
+            // Calcular el desplazamiento basado en reviewsPerView actual
             const translateX = -(currentReviewIndex * (100 / reviewsPerView));
             carousel.style.transform = `translateX(${translateX}%)`;
         }
     }
 
     function nextReview() {
-        // Máximo índice considerando que mostramos 3 cards
+        // Máximo índice considerando reviewsPerView actual
         const maxIndex = totalReviews - reviewsPerView;
         currentReviewIndex = currentReviewIndex >= maxIndex ? 0 : currentReviewIndex + 1;
         updateReviewCarousel();
@@ -230,9 +241,68 @@ const reviews = [
         updateReviewCarousel();
     }
 
+    // Funciones para manejo táctil/mouse
+    function handleStart(e) {
+        isDragging = true;
+        startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    }
+
+    function handleMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+    }
+
+    function handleEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const endX = e.type === 'mouseup' ? e.clientX : e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+        const threshold = 50; // Mínimo desplazamiento para activar
+
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                nextReview(); // Deslizar hacia la izquierda = siguiente
+            } else {
+                previousReview(); // Deslizar hacia la derecha = anterior
+            }
+        }
+    }
+
     // Inicializar cuando el DOM esté listo
     document.addEventListener('DOMContentLoaded', function() {
+        updateReviewsPerView();
         updateReviewCarousel();
+
+        // Agregar event listeners para touch/mouse
+        const carousel = document.getElementById('reviews-carousel');
+        if (carousel) {
+            // Touch events
+            carousel.addEventListener('touchstart', handleStart, { passive: false });
+            carousel.addEventListener('touchmove', handleMove, { passive: false });
+            carousel.addEventListener('touchend', handleEnd, { passive: false });
+            
+            // Mouse events
+            carousel.addEventListener('mousedown', handleStart);
+            carousel.addEventListener('mousemove', handleMove);
+            carousel.addEventListener('mouseup', handleEnd);
+            carousel.addEventListener('mouseleave', handleEnd);
+            
+            // Prevenir selección de texto durante el arrastre
+            carousel.style.userSelect = 'none';
+            carousel.style.cursor = 'grab';
+        }
+
+        // Actualizar en resize
+        window.addEventListener('resize', function() {
+            updateReviewsPerView();
+            // Ajustar currentReviewIndex si es necesario
+            const maxIndex = totalReviews - reviewsPerView;
+            if (currentReviewIndex > maxIndex) {
+                currentReviewIndex = maxIndex;
+            }
+            updateReviewCarousel();
+        });
     });
 
     // Hacer las funciones globales para que funcionen con onclick
