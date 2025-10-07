@@ -1,0 +1,319 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "ServirPRO: Tu tranquilidad asegurada" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    
+    <!-- Configuración de Tailwind para usar la fuente Inter -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'servir-blue': '#2F8BC0', // Azul oscuro para el header
+              'servir-green': '#85C657', // Verde vibrante para el botón de cotizar
+              'gray-text': '#44474B'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Estilos para simular la imagen de fondo */
+      .hero-background {
+        /* Usamos una imagen de placeholder que simula un encuentro de negocios */
+        background-image: url('https://placehold.co/1920x800/224050/ffffff?text=Reunión+de+negocios+ServirPRO');
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Estilos para el difuminado azul */
+      .hero-overlay {
+        background: linear-gradient(to top, rgb(33 82 111 / 95%) 0%, rgb(11 56 82 / 85%) 15%, rgb(6 70 108 / 70%) 30%, rgb(0 43 67 / 50%) 50%, rgba(47, 139, 192, 0.3) 70%, rgba(47, 139, 192, 0.1) 85%, transparent 100%)
+      }
+
+      /* Estilos mejorados para los menús desplegables */
+      .dropdown-group {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin-top: 0.5rem;
+        width: 12rem;
+        border-radius: 0.375rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s ease-out;
+        z-index: 50;
+      }
+
+      .dropdown-group:hover .dropdown-menu,
+      .dropdown-group.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-group:hover .dropdown-arrow,
+      .dropdown-group.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      /* Estilos para los indicadores del carrusel */
+      .carousel-indicator.active {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-gray-50">
+    <slot />
+    
+    <!-- Script para la interactividad del menú responsive -->
+    <script>
+      // Variables globales
+      let currentSlide = 0;
+      let currentOfficeSlide = 0;
+      let currentReviewSlide = 0;
+      const totalSlides = 3;
+      const totalOfficeSlides = 4;
+      const totalReviewSlides = 4;
+
+      // Función para mostrar slide específico
+      function showSlide(slideIndex) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        
+        // Ocultar todos los slides
+        slides.forEach(slide => slide.classList.add('hidden'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // Mostrar slide actual
+        if (slides[slideIndex]) {
+          slides[slideIndex].classList.remove('hidden');
+        }
+        if (indicators[slideIndex]) {
+          indicators[slideIndex].classList.add('active');
+        }
+        
+        currentSlide = slideIndex;
+      }
+
+      // Función para ir al siguiente slide
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      // Función para ir al slide anterior
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      // Función para mostrar slide de oficina específico
+      function showOfficeSlide(slideIndex) {
+        const slides = document.querySelectorAll('.office-slide');
+        
+        // Ocultar todos los slides
+        slides.forEach(slide => slide.classList.add('hidden'));
+        
+        // Mostrar slide actual
+        if (slides[slideIndex]) {
+          slides[slideIndex].classList.remove('hidden');
+        }
+        
+        currentOfficeSlide = slideIndex;
+      }
+
+      // Función para ir al siguiente slide de oficina
+      function nextOfficeSlide() {
+        currentOfficeSlide = (currentOfficeSlide + 1) % totalOfficeSlides;
+        showOfficeSlide(currentOfficeSlide);
+      }
+
+      // Función para ir al slide anterior de oficina
+      function prevOfficeSlide() {
+        currentOfficeSlide = (currentOfficeSlide - 1 + totalOfficeSlides) % totalOfficeSlides;
+        showOfficeSlide(currentOfficeSlide);
+      }
+
+      // Función para mostrar slide de reseña específico
+      function showReviewSlide(slideIndex) {
+        const slides = document.querySelectorAll('.review-slide');
+        
+        // Ocultar todos los slides
+        slides.forEach(slide => slide.classList.add('hidden'));
+        
+        // Mostrar slide actual
+        if (slides[slideIndex]) {
+          slides[slideIndex].classList.remove('hidden');
+        }
+        
+        currentReviewSlide = slideIndex;
+      }
+
+      // Función para ir al siguiente slide de reseña
+      function nextReviewSlide() {
+        currentReviewSlide = (currentReviewSlide + 1) % totalReviewSlides;
+        showReviewSlide(currentReviewSlide);
+      }
+
+      // Función para ir al slide anterior de reseña
+      function prevReviewSlide() {
+        currentReviewSlide = (currentReviewSlide - 1 + totalReviewSlides) % totalReviewSlides;
+        showReviewSlide(currentReviewSlide);
+      }
+
+      // Toggle del menú móvil
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        
+        if (mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        } else {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
+      }
+
+      // Toggle de acordeones móviles
+      function toggleAccordion(accordionId) {
+        const accordion = document.getElementById(accordionId);
+        const arrow = accordion.previousElementSibling.querySelector('.accordion-arrow');
+        
+        if (accordion.classList.contains('hidden')) {
+          accordion.classList.remove('hidden');
+          arrow.style.transform = 'rotate(180deg)';
+        } else {
+          accordion.classList.add('hidden');
+          arrow.style.transform = 'rotate(0deg)';
+        }
+      }
+
+      // Toggle del campo de búsqueda móvil
+      function toggleSearch() {
+        const searchField = document.getElementById('mobile-search-field');
+        const searchIcon = document.getElementById('search-icon');
+        const closeSearchIcon = document.getElementById('close-search-icon');
+        
+        if (searchField.classList.contains('hidden')) {
+          searchField.classList.remove('hidden');
+          searchIcon.classList.add('hidden');
+          closeSearchIcon.classList.remove('hidden');
+          searchField.querySelector('input').focus();
+        } else {
+          searchField.classList.add('hidden');
+          searchIcon.classList.remove('hidden');
+          closeSearchIcon.classList.add('hidden');
+        }
+      }
+
+      // Función para cambiar imagen del carrusel de oficina
+      function changeOfficeImage(officeId, imageIndex) {
+        const images = document.querySelectorAll(`#${officeId} .office-image`);
+        const indicators = document.querySelectorAll(`#${officeId} .image-indicator`);
+        
+        images.forEach(img => img.classList.add('hidden'));
+        indicators.forEach(ind => ind.classList.remove('bg-white', 'bg-opacity-100'));
+        indicators.forEach(ind => ind.classList.add('bg-white', 'bg-opacity-50'));
+        
+        if (images[imageIndex]) {
+          images[imageIndex].classList.remove('hidden');
+        }
+        if (indicators[imageIndex]) {
+          indicators[imageIndex].classList.remove('bg-opacity-50');
+          indicators[imageIndex].classList.add('bg-opacity-100');
+        }
+      }
+
+      // Inicialización cuando el DOM esté listo
+      document.addEventListener('DOMContentLoaded', function() {
+        // Mostrar el primer slide
+        showSlide(0);
+        showOfficeSlide(0);
+        showReviewSlide(0);
+        
+        // Auto-play del carrusel principal cada 5 segundos
+        setInterval(nextSlide, 5000);
+        
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            toggleMobileMenu();
+          });
+        });
+        
+        // Cerrar menú móvil al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+          const mobileMenu = document.getElementById('mobile-menu');
+          const hamburgerButton = document.querySelector('[onclick="toggleMobileMenu()"]');
+          
+          if (!mobileMenu.contains(event.target) && !hamburgerButton.contains(event.target)) {
+            if (!mobileMenu.classList.contains('hidden')) {
+              toggleMobileMenu();
+            }
+          }
+        });
+      });
+
+      // Hacer las funciones globales para que puedan ser llamadas desde los elementos HTML
+      window.showSlide = showSlide;
+      window.nextSlide = nextSlide;
+      window.prevSlide = prevSlide;
+      window.showOfficeSlide = showOfficeSlide;
+      window.nextOfficeSlide = nextOfficeSlide;
+      window.prevOfficeSlide = prevOfficeSlide;
+      window.showReviewSlide = showReviewSlide;
+      window.nextReviewSlide = nextReviewSlide;
+      window.prevReviewSlide = prevReviewSlide;
+      window.toggleMobileMenu = toggleMobileMenu;
+      window.toggleAccordion = toggleAccordion;
+      window.toggleSearch = toggleSearch;
+      window.changeOfficeImage = changeOfficeImage;
+    </script>
+  </body>
+</html>

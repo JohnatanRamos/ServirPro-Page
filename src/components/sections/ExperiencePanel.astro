@@ -1,0 +1,57 @@
+---
+// Experience Panel component
+---
+
+<!-- Panel de Experiencia -->
+<section class="bg-white py-8 border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Layout para móvil -->
+    <div class="md:hidden">
+      <!-- Logo en la esquina superior derecha -->
+      <div class="flex justify-end mb-4">
+        <span class="text-2xl font-bold text-servir-blue">ServirPRO</span>
+      </div>
+      
+      <!-- Contenido principal -->
+      <div class="text-center">
+        <!-- Layout horizontal: +10 a la izquierda, años de experiencia a la derecha -->
+        <div class="flex items-center justify-center space-x-4 mb-2">
+          <!-- +10 a la izquierda -->
+          <div class="text-4xl font-bold text-servir-blue">
+            +10
+          </div>
+          <!-- años de experiencia a la derecha -->
+          <div class="text-lg text-gray-600">
+            años de<br>experiencia
+          </div>
+        </div>
+        
+        <!-- y miles de clientes satisfechos centrado debajo -->
+        <div class="text-lg text-gray-600">
+          y miles de clientes satisfechos
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout para desktop (mantener el diseño original) -->
+    <div class="hidden md:flex md:items-center md:justify-between">
+      <!-- Texto de Experiencia -->
+      <div class="flex items-center space-x-8">
+        <div class="text-center">
+          <div class="text-5xl font-bold text-servir-blue mb-2">+10</div>
+          <div class="text-lg text-gray-600">años de experiencia</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg text-gray-600">y miles de</div>
+          <div class="text-lg text-gray-600 font-semibold">clientes satisfechos</div>
+        </div>
+      </div>
+
+      <!-- Logo ServirPRO -->
+      <div class="flex-shrink-0">
+        <span class="text-3xl font-bold text-servir-blue">ServirPRO</span>
+      </div>
+    </div>
+  </div>
+</section>

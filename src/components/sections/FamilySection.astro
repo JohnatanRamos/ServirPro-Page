@@ -1,0 +1,50 @@
+---
+// FamilySection.astro - Sección de tranquilidad con imagen de familia
+---
+
+<!-- Sección de Tranquilidad con Imagen de Familia -->
+<section
+    class="relative py-32 sm:py-40 lg:py-48 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[600px] lg:min-h-[700px]">
+    <!-- Imagen de fondo difuminada -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://eresmama.com/wp-content/uploads/2017/03/family-banner.jpg" alt="Familia feliz"
+            class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-white bg-opacity-70"></div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto sm:mx-0">
+            <h2
+                class="text-2xl sm:text-3xl lg:text-4xl font-light text-gray-800 mb-8 leading-tight text-center sm:text-left">
+                <!-- En móvil: 2 líneas con resaltado azul y texto blanco -->
+                <span class="sm:hidden">
+                    <span
+                        class="font-bold bg-servir-blue text-white px-3 py-1 border-2 rounded mb-1 inline-block"
+                        style="border-color: #2F8BC0;">Aseguramos</span><br>
+                    <span class="font-bold bg-servir-blue text-white px-3 py-1 border-2 rounded inline-block"
+                        style="border-color: #2F8BC0;">tu tranquilidad,</span><br>
+                </span>
+                <!-- En PC: 1 línea sin borde ni sombreado, solo negrilla -->
+                <span class="hidden sm:inline">
+                    <span class="font-bold">Aseguramos tu tranquilidad,</span><br>
+                </span>
+                para que vivas sin preocuparte<br>
+                por tu salud, tu vida o tu vehículo
+            </h2>
+        </div>
+
+        <!-- Botones centrados respecto a toda la imagen -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-24 justify-center items-center w-full">
+            <button
+                class="w-full sm:w-auto px-16 py-4 bg-gray-200 text-black font-bold rounded-full hover:bg-gray-300 transition-colors duration-300 min-w-[300px] max-w-[350px]">
+                Hablar con un asesor
+            </button>
+            <button
+                class="w-full sm:w-auto px-16 py-4 text-black font-bold rounded-full hover:opacity-90 transition-colors duration-300 min-w-[300px] max-w-[350px]"
+                style="background-color: #85C657;">
+                Cotizar seguro
+            </button>
+        </div>
+    </div>
+</section>

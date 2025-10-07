@@ -1,16 +1,26 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import HeroCarousel from '../components/sections/HeroCarousel.astro';
+import ExperiencePanel from '../components/sections/ExperiencePanel.astro';
+import Services from '../components/sections/Services.astro';
+import OfficesCarousel from '../components/sections/OfficesCarousel.astro';
+import AdditionalServices from '../components/sections/AdditionalServices.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import FamilySection from '../components/sections/FamilySection.astro';
+import Footer from '../components/sections/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="ServirPRO: Tu tranquilidad asegurada">
+	<Header />
+	<main>
+		<HeroCarousel />
+		<ExperiencePanel />
+		<Services />
+		<OfficesCarousel />
+		<AdditionalServices />
+		<Testimonials />
+		<FamilySection />
+	</main>
+	<Footer />
+</Layout>
