@@ -1,5 +1,10 @@
 ---
 // AdditionalServices.astro - Servicios adicionales (asesoría y trámites)
+import { Image } from 'astro:assets';
+
+// Importar iconos SVG
+import asesoriaPersonalizadaIcon from '../../assets/iconos/asesoria_personalizada.svg';
+import tramitesRapidosIcon from '../../assets/iconos/tramites_rapidos.svg';
 ---
 
 <!-- Sección de Servicios -->
@@ -12,15 +17,9 @@
                 class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left">
                 <!-- Icono -->
                 <div class="flex-shrink-0">
-                    <div class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center"
-                        style="background-color: #2F8BC0;">
-                        <svg class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" viewBox="0 0 200 200" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 0L25 35V100C25 150 60 190 100 200C140 190 175 150 175 100V35L100 0Z"
-                                fill="white" />
-                            <path d="M125 90H110V75H90V90H75V110H90V125H110V110H125V90Z" fill="#2F8BC0" />
-                        </svg>
-                    </div>
+                    <Image src={asesoriaPersonalizadaIcon} 
+                           alt="Asesoría personalizada" 
+                           class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24" />
                 </div>
 
                 <!-- Contenido -->
@@ -35,15 +34,9 @@
                 class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left">
                 <!-- Icono -->
                 <div class="flex-shrink-0">
-                    <div class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center"
-                        style="background-color: #2F8BC0;">
-                        <svg class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" viewBox="0 0 200 200" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 0L25 35V100C25 150 60 190 100 200C140 190 175 150 175 100V35L100 0Z"
-                                fill="white" />
-                            <path d="M125 90H110V75H90V90H75V110H90V125H110V110H125V90Z" fill="#2F8BC0" />
-                        </svg>
-                    </div>
+                    <Image src={tramitesRapidosIcon} 
+                           alt="Trámites fáciles y rápidos" 
+                           class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24" />
                 </div>
 
                 <!-- Contenido -->
