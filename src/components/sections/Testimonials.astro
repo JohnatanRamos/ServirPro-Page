@@ -160,8 +160,19 @@ const reviews = [
                     </div>
 
                     <!-- Carrusel de reseñas -->
-                    <div class="flex-1 min-w-0 lg:flex-[3]">
-                        <div class="relative overflow-hidden">
+                    <div class="flex-1 min-w-0 lg:flex-[3] relative">
+                        <!-- Botón anterior -->
+                        <button onclick="previousReview();"
+                            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-3 hover:bg-white hover: transition-all z-20 border border-gray-200">
+                            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Contenedor del carrusel -->
+                        <div class="mx-12 overflow-hidden">
                             <div id="reviews-carousel"
                                 class="flex transition-transform duration-300 ease-in-out">
                                 {reviews.map((review) => (
@@ -174,25 +185,17 @@ const reviews = [
                                     />
                                 ))}
                             </div>
-
-                            <!-- Controles del carrusel -->
-                            <button onclick="previousReview(); pauseReviewAutoPlayOnInteraction();"
-                                class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-all z-10">
-                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 19l-7-7 7-7"></path>
-                                </svg>
-                            </button>
-                            <button onclick="nextReview(); pauseReviewAutoPlayOnInteraction();"
-                                class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-all z-10">
-                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
                         </div>
+
+                        <!-- Botón siguiente -->
+                        <button onclick="nextReview();"
+                            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-3 hover:bg-white hover:transition-all z-20 border border-gray-200">
+                            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -203,20 +206,19 @@ const reviews = [
 <script>
     let currentReviewIndex = 0;
     const totalReviews = 13;
-    const reviewsPerView = 2; // Mostrar 2 cards a la vez
-    let reviewAutoPlayInterval;
+    const reviewsPerView = 3; // Mostrar 3 cards a la vez
 
     function updateReviewCarousel() {
         const carousel = document.getElementById('reviews-carousel');
         if (carousel) {
-            // Calcular el desplazamiento: cada card ocupa 50% del ancho
+            // Calcular el desplazamiento: cada card ocupa 33.333% del ancho
             const translateX = -(currentReviewIndex * (100 / reviewsPerView));
             carousel.style.transform = `translateX(${translateX}%)`;
         }
     }
 
     function nextReview() {
-        // Máximo índice considerando que mostramos 2 cards
+        // Máximo índice considerando que mostramos 3 cards
         const maxIndex = totalReviews - reviewsPerView;
         currentReviewIndex = currentReviewIndex >= maxIndex ? 0 : currentReviewIndex + 1;
         updateReviewCarousel();
@@ -228,31 +230,12 @@ const reviews = [
         updateReviewCarousel();
     }
 
-    function startReviewAutoPlay() {
-        reviewAutoPlayInterval = setInterval(nextReview, 4000);
-    }
-
-    function stopReviewAutoPlay() {
-        if (reviewAutoPlayInterval) {
-            clearInterval(reviewAutoPlayInterval);
-            reviewAutoPlayInterval = null;
-        }
-    }
-
-    function pauseReviewAutoPlayOnInteraction() {
-        stopReviewAutoPlay();
-        // Reiniciar autoplay después de 8 segundos
-        setTimeout(startReviewAutoPlay, 8000);
-    }
-
     // Inicializar cuando el DOM esté listo
     document.addEventListener('DOMContentLoaded', function() {
         updateReviewCarousel();
-        startReviewAutoPlay();
     });
 
     // Hacer las funciones globales para que funcionen con onclick
     window.nextReview = nextReview;
     window.previousReview = previousReview;
-    window.pauseReviewAutoPlayOnInteraction = pauseReviewAutoPlayOnInteraction;
 </script>
