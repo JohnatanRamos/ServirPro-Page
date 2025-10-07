@@ -31,6 +31,17 @@ import logo from '../../assets/logos/Logo.png';
     <!-- Contenido -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl mx-auto sm:mx-0">
+            <!-- Logo en la parte superior solo en móvil -->
+            <div class="flex justify-center mb-16 sm:hidden">
+                <Image 
+                    src={logo} 
+                    alt="Logo ServirPro" 
+                    class="w-52 h-auto"
+                    loading="lazy"
+                    quality={90}
+                />
+            </div>
+            
             <h2
                 class="text-2xl text-servir-gray-text sm:text-3xl lg:text-4xl font-light text-gray-800 mb-8 leading-tight text-center text-servir-gray-text">
                 <!-- En móvil: 2 líneas con resaltado azul y texto blanco -->
@@ -48,8 +59,9 @@ import logo from '../../assets/logos/Logo.png';
                 para que vivas sin preocuparte<br>
                 por tu salud, tu vida o tu vehículo
             </h2>
-             <!-- Logo centrado debajo del texto -->
-            <div class="flex justify-center mt-8">
+            
+             <!-- Logo centrado debajo del texto solo en desktop -->
+            <div class="hidden sm:flex justify-center mt-8">
                 <Image 
                     src={logo} 
                     alt="Logo ServirPro" 
