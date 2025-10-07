@@ -23,16 +23,17 @@ const { name, initial, timeAgo, review, bgColor = "bg-blue-500" } = Astro.props;
             <Image src={googleImage} class="w-6 h-6" alt="Google icon">
         </div>
         
-        <div class="flex items-center mb-4">
-            <div class={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center text-white font-bold mr-4`}>
+        <!-- Layout responsive: centrado en móvil, horizontal en desktop -->
+        <div class="flex flex-col items-center text-center md:flex-row md:items-center md:text-left mb-4">
+            <div class={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center text-white font-bold mb-3 md:mb-0 md:mr-4`}>
                 {initial}
             </div>
             <div>
-                <div class="font-semibold text-gray-800 text-left">{name}</div>
-                <div class="text-sm text-gray-500 text-left">{timeAgo}</div>
+                <div class="font-semibold text-gray-800">{name}</div>
+                <div class="text-sm text-gray-500">{timeAgo}</div>
             </div>
         </div>
-          <div class="flex text-yellow-400 mt-1">
+          <div class="flex text-yellow-400 mt-1 justify-center md:justify-start">
                     <!-- 5 estrellas -->
                     {Array.from({ length: 5 }).map(() => (
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -40,6 +41,6 @@ const { name, initial, timeAgo, review, bgColor = "bg-blue-500" } = Astro.props;
                         </svg>
                     ))}
                 </div>
-        <p class="text-gray-700 text-sm text-left">{review}</p>
+        <p class="text-gray-700 text-sm text-center md:text-left">{review}</p>
     </div>
 </div>
