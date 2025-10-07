@@ -25,11 +25,11 @@ const { name, initial, timeAgo, review, bgColor = "bg-blue-500" } = Astro.props;
         
         <!-- Layout responsive: centrado en móvil, horizontal en desktop -->
         <div class="flex flex-col items-center text-center md:flex-row md:items-center md:text-left mb-4">
-            <div class={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center text-white font-bold mb-3 md:mb-0 md:mr-4`}>
+            <div class={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center text-white font-bold mb-3 md:mb-0 md:mr-4 flex-shrink-0`}>
                 {initial}
             </div>
-            <div>
-                <div class="font-semibold text-gray-800">{name}</div>
+            <div class="md:flex-1 md:min-w-0">
+                <div class="font-semibold text-gray-800 md:truncate">{name}</div>
                 <div class="text-sm text-gray-500">{timeAgo}</div>
             </div>
         </div>
