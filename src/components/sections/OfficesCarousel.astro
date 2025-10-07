@@ -23,7 +23,62 @@
             <div class="overflow-hidden" id="carousel-container">
                 <div id="offices-carousel" class="flex transition-transform duration-300 ease-in-out">
 
-                    <!-- Card Oficina Medellín -->
+                    <!-- Card CC. Viva Envigado -->
+                    <div class="flex-none w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-2">
+                        <div
+                            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-96 sm:h-80 md:h-96 lg:h-80">
+                            <div class="flex flex-col sm:flex-row h-full">
+                                <!-- Carrusel de imágenes (izquierda) -->
+                                <div class="w-full sm:w-1/2 h-1/2 sm:h-full relative p-3">
+                                    <div class="relative h-full rounded-lg overflow-hidden">
+                                        <div id="envigado-images"
+                                            class="flex h-full transition-transform duration-300 ease-in-out"
+                                            style="width: 300%;">
+                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
+                                                alt="CC. Viva Envigado 1" class="flex-none h-full object-cover"
+                                                style="width: 33.333%;">
+                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
+                                                alt="CC. Viva Envigado 2" class="flex-none h-full object-cover"
+                                                style="width: 33.333%;">
+                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
+                                                alt="CC. Viva Envigado 3" class="flex-none h-full object-cover"
+                                                style="width: 33.333%;">
+                                        </div>
+                                    </div>
+                                    <!-- Controles del carrusel de imágenes -->
+                                    <button onclick="previousImage('envigado')"
+                                        class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="nextImage('envigado')"
+                                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <!-- Contenido de la card (derecha) -->
+                                <div
+                                    class="w-full sm:w-1/2 h-1/2 sm:h-full p-4 sm:p-6 flex flex-col justify-center items-center text-center">
+                                    <h3 class="text-xl md:text-2xl font-bold mb-3" style="color: #385D83;">
+                                        CC. Viva Envigado</h3>
+                                    <a href="https://maps.app.goo.gl/4ik33Hfv3dbTHbFv9" target="_blank"
+                                        class="inline-block bg-gray-300 text-black py-2 px-6 rounded-full font-semibold hover:bg-gray-400 transition-colors text-sm md:text-base">
+                                        Ver ubicación
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Oficina en Medellín -->
                     <div class="flex-none w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-2">
                         <div
                             class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-96 sm:h-80 md:h-96 lg:h-80">
@@ -34,13 +89,13 @@
                                         <div id="medellin-images"
                                             class="flex h-full transition-transform duration-300 ease-in-out"
                                             style="width: 300%;">
-                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
+                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
                                                 alt="Oficina Medellín 1" class="flex-none h-full object-cover"
                                                 style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
+                                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop"
                                                 alt="Oficina Medellín 2" class="flex-none h-full object-cover"
                                                 style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
+                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
                                                 alt="Oficina Medellín 3" class="flex-none h-full object-cover"
                                                 style="width: 33.333%;">
                                         </div>
@@ -70,12 +125,9 @@
                                     <h3 class="text-xl md:text-2xl font-bold mb-3" style="color: #385D83;">
                                         Oficina en Medellín</h3>
                                     <p class="text-gray-600 mb-2 text-sm md:text-base">Carrera 51 #45-75</p>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">CC. Pioneros Local 213
-                                    </p>
-                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Centro Medellín, La
-                                        Candelaria.</p>
-                                    <a href="https://maps.google.com/?q=Carrera+51+45-75+Medellín"
-                                        target="_blank"
+                                    <p class="text-gray-600 mb-2 text-sm md:text-base">CC. Pioneros - Local 213</p>
+                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Centro de Medellín, La Candelaria</p>
+                                    <a href="https://maps.app.goo.gl/UXmTfssLjFP8LqVY9?g_st=awb" target="_blank"
                                         class="inline-block bg-gray-300 text-black py-2 px-6 rounded-full font-semibold hover:bg-gray-400 transition-colors text-sm md:text-base">
                                         Ver ubicación
                                     </a>
@@ -84,7 +136,7 @@
                         </div>
                     </div>
 
-                    <!-- Card Oficina Bogotá -->
+                    <!-- Card Oficina en Bogotá -->
                     <div class="flex-none w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-2">
                         <div
                             class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-96 sm:h-80 md:h-96 lg:h-80">
@@ -95,13 +147,13 @@
                                         <div id="bogota-images"
                                             class="flex h-full transition-transform duration-300 ease-in-out"
                                             style="width: 300%;">
-                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
+                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
                                                 alt="Oficina Bogotá 1" class="flex-none h-full object-cover"
                                                 style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop"
+                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
                                                 alt="Oficina Bogotá 2" class="flex-none h-full object-cover"
                                                 style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
+                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
                                                 alt="Oficina Bogotá 3" class="flex-none h-full object-cover"
                                                 style="width: 33.333%;">
                                         </div>
@@ -130,10 +182,10 @@
                                     class="w-full sm:w-1/2 h-1/2 sm:h-full p-4 sm:p-6 flex flex-col justify-center items-center text-center">
                                     <h3 class="text-xl md:text-2xl font-bold mb-3" style="color: #385D83;">
                                         Oficina en Bogotá</h3>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Carrera 15 #93-47</p>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Edificio Colseguros</p>
-                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Zona Rosa, Chapinero.</p>
-                                    <a href="https://maps.google.com/?q=Carrera+15+93-47+Bogotá" target="_blank"
+                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Calle 13# 15-73</p>
+                                    <p class="text-gray-600 mb-2 text-sm md:text-base">CC. Nodo Móvil 13G - Oficina 206</p>
+                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Centro de Bogotá, Los Mártires</p>
+                                    <a href="https://maps.app.goo.gl/xWVsig6u2rkvhwZ19?g_st=awb" target="_blank"
                                         class="inline-block bg-gray-300 text-black py-2 px-6 rounded-full font-semibold hover:bg-gray-400 transition-colors text-sm md:text-base">
                                         Ver ubicación
                                     </a>
@@ -142,7 +194,7 @@
                         </div>
                     </div>
 
-                    <!-- Card Oficina Cali -->
+                    <!-- Card Oficina en Pereira -->
                     <div class="flex-none w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-2">
                         <div
                             class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-96 sm:h-80 md:h-96 lg:h-80">
@@ -150,82 +202,22 @@
                                 <!-- Carrusel de imágenes (izquierda) -->
                                 <div class="w-full sm:w-1/2 h-1/2 sm:h-full relative p-3">
                                     <div class="relative h-full rounded-lg overflow-hidden">
-                                        <div id="cali-images"
-                                            class="flex h-full transition-transform duration-300 ease-in-out"
-                                            style="width: 300%;">
-                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
-                                                alt="Oficina Cali 1" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
-                                                alt="Oficina Cali 2" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
-                                                alt="Oficina Cali 3" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                        </div>
-                                    </div>
-                                    <!-- Controles del carrusel de imágenes -->
-                                    <button onclick="previousImage('cali')"
-                                        class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                                        </svg>
-                                    </button>
-                                    <button onclick="nextImage('cali')"
-                                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Contenido de la card (derecha) -->
-                                <div
-                                    class="w-full sm:w-1/2 h-1/2 sm:h-full p-4 sm:p-6 flex flex-col justify-center items-center text-center">
-                                    <h3 class="text-xl md:text-2xl font-bold mb-3" style="color: #385D83;">
-                                        Oficina en Cali</h3>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Avenida 6N #28-10</p>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Centro Comercial
-                                        Chipichape</p>
-                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Norte de Cali, Valle del
-                                        Cauca.</p>
-                                    <a href="https://maps.google.com/?q=Avenida+6N+28-10+Cali" target="_blank"
-                                        class="inline-block bg-gray-300 text-black py-2 px-6 rounded-full font-semibold hover:bg-gray-400 transition-colors text-sm md:text-base">
-                                        Ver ubicación
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card Oficina Barranquilla -->
-                    <div class="flex-none w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-2">
-                        <div
-                            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-96 sm:h-80 md:h-96 lg:h-80">
-                            <div class="flex flex-col sm:flex-row h-full">
-                                <!-- Carrusel de imágenes (izquierda) -->
-                                <div class="w-full sm:w-1/2 h-1/2 sm:h-full relative p-3">
-                                    <div class="relative h-full rounded-lg overflow-hidden">
-                                        <div id="barranquilla-images"
+                                        <div id="pereira-images"
                                             class="flex h-full transition-transform duration-300 ease-in-out"
                                             style="width: 300%;">
                                             <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop"
-                                                alt="Oficina Barranquilla 1"
+                                                alt="Oficina Pereira 1"
                                                 class="flex-none h-full object-cover" style="width: 33.333%;">
                                             <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
-                                                alt="Oficina Barranquilla 2"
+                                                alt="Oficina Pereira 2"
                                                 class="flex-none h-full object-cover" style="width: 33.333%;">
                                             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
-                                                alt="Oficina Barranquilla 3"
+                                                alt="Oficina Pereira 3"
                                                 class="flex-none h-full object-cover" style="width: 33.333%;">
                                         </div>
                                     </div>
                                     <!-- Controles del carrusel de imágenes -->
-                                    <button onclick="previousImage('barranquilla')"
+                                    <button onclick="previousImage('pereira')"
                                         class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -233,7 +225,7 @@
                                                 stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                         </svg>
                                     </button>
-                                    <button onclick="nextImage('barranquilla')"
+                                    <button onclick="nextImage('pereira')"
                                         class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -247,12 +239,11 @@
                                 <div
                                     class="w-full sm:w-1/2 h-1/2 sm:h-full p-4 sm:p-6 flex flex-col justify-center items-center text-center">
                                     <h3 class="text-xl md:text-2xl font-bold mb-3" style="color: #385D83;">
-                                        Oficina en Barranquilla</h3>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Carrera 53 #75-42</p>
-                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Edificio Centro Ejecutivo
-                                    </p>
-                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Norte, Atlántico.</p>
-                                    <a href="https://maps.google.com/?q=Carrera+53+75-42+Barranquilla"
+                                        Oficina en Pereira</h3>
+                                    <p class="text-gray-600 mb-2 text-sm md:text-base">Carrera 8#19-41</p>
+                                    <p class="text-gray-600 mb-2 text-sm md:text-base">CC. Bolívar Plaza- Local 118</p>
+                                    <p class="text-gray-600 mb-4 text-sm md:text-base">Plaza Bolívar, Pereira</p>
+                                    <a href="https://maps.app.goo.gl/hCAJopm3WZTepwaY9?g_st=ic"
                                         target="_blank"
                                         class="inline-block bg-gray-300 text-black py-2 px-6 rounded-full font-semibold hover:bg-gray-400 transition-colors text-sm md:text-base">
                                         Ver ubicación
@@ -279,3 +270,94 @@
         </div>
     </div>
 </section>
+
+<script>
+    // Variables globales para el carrusel principal
+    let currentOfficeIndex = 0;
+    const totalOffices = 4;
+
+    // Variables para los carruseles de imágenes de cada oficina
+    const imageIndexes = {
+        'envigado': 0,
+        'medellin': 0,
+        'bogota': 0,
+        'pereira': 0
+    };
+
+    // Función para cambiar de oficina
+    function changeOffice(index) {
+        currentOfficeIndex = index;
+        const carousel = document.getElementById('offices-carousel');
+        const container = document.getElementById('carousel-container');
+        
+        // Obtener el ancho del contenedor
+        const containerWidth = container.offsetWidth;
+        
+        // Calcular el ancho de cada card incluyendo márgenes
+        // Cada card tiene mx-2 (16px de margen total) y diferentes anchos responsivos
+        const cards = carousel.children;
+        let totalOffset = 0;
+        
+        for (let i = 0; i < index; i++) {
+            totalOffset += cards[i].offsetWidth + 16; // 16px = mx-2 (8px cada lado)
+        }
+        
+        carousel.style.transform = `translateX(-${totalOffset}px)`;
+        
+        // Actualizar indicadores
+        updateCarouselIndicators();
+    }
+
+    // Función para actualizar los indicadores del carrusel principal
+    function updateCarouselIndicators() {
+        const buttons = document.querySelectorAll('.carousel-btn');
+        buttons.forEach((btn, index) => {
+            if (index === currentOfficeIndex) {
+                btn.classList.remove('bg-gray-300');
+                btn.classList.add('bg-blue-600');
+            } else {
+                btn.classList.remove('bg-blue-600');
+                btn.classList.add('bg-gray-300');
+            }
+        });
+    }
+
+    // Función para cambiar imagen anterior en el carrusel de fotos
+    function previousImage(office) {
+        const currentIndex = imageIndexes[office];
+        const newIndex = currentIndex === 0 ? 2 : currentIndex - 1;
+        imageIndexes[office] = newIndex;
+        
+        const imageCarousel = document.getElementById(`${office}-images`);
+        const translateX = -newIndex * 33.333;
+        imageCarousel.style.transform = `translateX(${translateX}%)`;
+    }
+
+    // Función para cambiar imagen siguiente en el carrusel de fotos
+    function nextImage(office) {
+        const currentIndex = imageIndexes[office];
+        const newIndex = currentIndex === 2 ? 0 : currentIndex + 1;
+        imageIndexes[office] = newIndex;
+        
+        const imageCarousel = document.getElementById(`${office}-images`);
+        const translateX = -newIndex * 33.333;
+        imageCarousel.style.transform = `translateX(${translateX}%)`;
+    }
+
+    // Inicializar el carrusel cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configurar los botones indicadores del carrusel principal
+        const carouselButtons = document.querySelectorAll('.carousel-btn');
+        carouselButtons.forEach((btn, index) => {
+            btn.addEventListener('click', () => changeOffice(index));
+        });
+
+        // Inicializar el primer indicador como activo
+        updateCarouselIndicators();
+    });
+
+    // Hacer las funciones globales para que funcionen con onclick
+    window.previousImage = previousImage;
+    window.nextImage = nextImage;
+    window.changeOffice = changeOffice;
+</script>
