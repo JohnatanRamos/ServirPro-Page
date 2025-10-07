@@ -1,5 +1,14 @@
 ---
 // OfficesCarousel.astro - Carrusel de oficinas
+import { Image } from 'astro:assets';
+
+// Importar imágenes de oficinas
+import oficinaMedellin01 from '../../assets/images/offices/Oficinamedellin-01.jpg';
+import oficinaMedellin02 from '../../assets/images/offices/Oficinamedellin-02.jpg';
+import oficinaBogota01 from '../../assets/images/offices/Oficinabogota-01.jpg';
+import oficinaBogota02 from '../../assets/images/offices/Oficinabogota-02.jpg';
+import oficinaPereira01 from '../../assets/images/offices/Oficinapereira-01.jpg';
+import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg';
 ---
 
 <!-- Contamos con oficinas en -->
@@ -88,16 +97,13 @@
                                     <div class="relative h-full rounded-lg overflow-hidden">
                                         <div id="medellin-images"
                                             class="flex h-full transition-transform duration-300 ease-in-out"
-                                            style="width: 300%;">
-                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
+                                            style="width: 200%;">
+                                            <Image src={oficinaMedellin01}
                                                 alt="Oficina Medellín 1" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop"
+                                                style="width: 50%;" />
+                                            <Image src={oficinaMedellin02}
                                                 alt="Oficina Medellín 2" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
-                                                alt="Oficina Medellín 3" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
+                                                style="width: 50%;" />
                                         </div>
                                     </div>
                                     <!-- Controles del carrusel de imágenes -->
@@ -146,16 +152,13 @@
                                     <div class="relative h-full rounded-lg overflow-hidden">
                                         <div id="bogota-images"
                                             class="flex h-full transition-transform duration-300 ease-in-out"
-                                            style="width: 300%;">
-                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
+                                            style="width: 200%;">
+                                            <Image src={oficinaBogota01}
                                                 alt="Oficina Bogotá 1" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
+                                                style="width: 50%;" />
+                                            <Image src={oficinaBogota02}
                                                 alt="Oficina Bogotá 2" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop"
-                                                alt="Oficina Bogotá 3" class="flex-none h-full object-cover"
-                                                style="width: 33.333%;">
+                                                style="width: 50%;" />
                                         </div>
                                     </div>
                                     <!-- Controles del carrusel de imágenes -->
@@ -204,16 +207,13 @@
                                     <div class="relative h-full rounded-lg overflow-hidden">
                                         <div id="pereira-images"
                                             class="flex h-full transition-transform duration-300 ease-in-out"
-                                            style="width: 300%;">
-                                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop"
-                                                alt="Oficina Pereira 1"
-                                                class="flex-none h-full object-cover" style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
-                                                alt="Oficina Pereira 2"
-                                                class="flex-none h-full object-cover" style="width: 33.333%;">
-                                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
-                                                alt="Oficina Pereira 3"
-                                                class="flex-none h-full object-cover" style="width: 33.333%;">
+                                            style="width: 200%;">
+                                            <Image src={oficinaPereira01}
+                                                alt="Oficina Pereira 1" class="flex-none h-full object-cover"
+                                                style="width: 50%;" />
+                                            <Image src={oficinaPereira02}
+                                                alt="Oficina Pereira 2" class="flex-none h-full object-cover"
+                                                style="width: 50%;" />
                                         </div>
                                     </div>
                                     <!-- Controles del carrusel de imágenes -->
@@ -325,22 +325,22 @@
     // Función para cambiar imagen anterior en el carrusel de fotos
     function previousImage(office) {
         const currentIndex = imageIndexes[office];
-        const newIndex = currentIndex === 0 ? 2 : currentIndex - 1;
+        const newIndex = currentIndex === 0 ? 1 : currentIndex - 1;
         imageIndexes[office] = newIndex;
         
         const imageCarousel = document.getElementById(`${office}-images`);
-        const translateX = -newIndex * 33.333;
+        const translateX = -newIndex * 50;
         imageCarousel.style.transform = `translateX(${translateX}%)`;
     }
 
     // Función para cambiar imagen siguiente en el carrusel de fotos
     function nextImage(office) {
         const currentIndex = imageIndexes[office];
-        const newIndex = currentIndex === 2 ? 0 : currentIndex + 1;
+        const newIndex = currentIndex === 1 ? 0 : currentIndex + 1;
         imageIndexes[office] = newIndex;
         
         const imageCarousel = document.getElementById(`${office}-images`);
-        const translateX = -newIndex * 33.333;
+        const translateX = -newIndex * 50;
         imageCarousel.style.transform = `translateX(${translateX}%)`;
     }
 
