@@ -6,10 +6,33 @@ import logoSrc from '../../assets/logos/Logo.jpg';
 
 <!-- Header Principal (Panel Superior) -->
 <div class="bg-servir-blue text-white text-center py-2 text-sm font-medium">
-    <div class="px-4 truncate">
+    <!-- Texto estático en pantallas medianas y grandes -->
+    <div class="px-4 hidden sm:block">
         ServirPRO: Tu tranquilidad asegurada | +10 años de experiencia y miles de clientes protegidos.
     </div>
+    <!-- Marquee en móviles (continuo, sin espacios vacíos) -->
+    <div class="px-4 sm:hidden overflow-hidden">
+        <div class="marquee-track">
+            <span class="marquee-item">ServirPRO: Tu tranquilidad asegurada | +10 años de experiencia y miles de clientes protegidos.</span>
+            <span class="marquee-item">ServirPRO: Tu tranquilidad asegurada | +10 años de experiencia y miles de clientes protegidos.</span>
+        </div>
+    </div>
 </div>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-item {
+    padding-right: 2rem; /* espacio entre los duplicados para transición limpia */
+  }
+</style>
 
 <!-- Navegación Principal -->
 <header class="bg-white shadow-md sticky top-0 z-50">
