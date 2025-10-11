@@ -17,7 +17,7 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
         <!-- Título con fondo blanco redondo en la parte superior -->
         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div class="bg-white rounded-full px-12 py-6 shadow-lg">
-                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold whitespace-nowrap text-servir-blue">
+                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold whitespace-nowrap text-servir-blue" style="font-style:italic">
                     Contamos con oficinas en:
                 </h2>
             </div>
@@ -254,15 +254,15 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
             </div>
 
             <!-- Botones de navegación en la parte inferior -->
-            <div class="flex justify-center mt-8 space-x-4">
+            <div class="flex justify-center mt-8 space-x-4" id="offices-indicators">
                 <button
-                    class="carousel-btn w-4 h-4 rounded-full bg-blue-600 shadow-lg border-2 border-white transition-all duration-300 hover:bg-blue-700 hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"></button>
+                    class="office-indicator w-4 h-4 rounded-full bg-blue-600 shadow-lg border-2 border-white transition-all duration-300 hover:bg-blue-700 hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"></button>
                 <button
-                    class="carousel-btn w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
+                    class="office-indicator w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
                 <button
-                    class="carousel-btn w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
+                    class="office-indicator w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
                 <button
-                    class="carousel-btn w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-next focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
+                    class="office-indicator w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-next focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
             </div>
         </div>
     </div>
@@ -283,31 +283,34 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
 
     // Función para cambiar de oficina
     function changeOffice(index) {
-        currentOfficeIndex = index;
         const carousel = document.getElementById('offices-carousel');
         const container = document.getElementById('carousel-container');
-        
-        // Obtener el ancho del contenedor
-        const containerWidth = container.offsetWidth;
-        
-        // Calcular el ancho de cada card incluyendo márgenes
-        // Cada card tiene mx-2 (16px de margen total) y diferentes anchos responsivos
+        if (!carousel || !container) return;
+
         const cards = carousel.children;
+        const maxIndex = Math.max(0, cards.length - 1);
+        currentOfficeIndex = Math.min(Math.max(index, 0), maxIndex);
+
+        // Obtener el ancho del contenedor (por si se necesita en el futuro)
+        const containerWidth = container.offsetWidth;
+
+        // Calcular el desplazamiento acumulado hasta la tarjeta seleccionada
         let totalOffset = 0;
-        
-        for (let i = 0; i < index; i++) {
-            totalOffset += cards[i].offsetWidth + 16; // 16px = mx-2 (8px cada lado)
+        for (let i = 0; i < currentOfficeIndex; i++) {
+            const card = cards[i];
+            if (!card) break;
+            totalOffset += card.offsetWidth + 16; // 16px = mx-2 (8px cada lado)
         }
-        
+
         carousel.style.transform = `translateX(-${totalOffset}px)`;
-        
+
         // Actualizar indicadores
         updateCarouselIndicators();
     }
 
-    // Función para actualizar los indicadores del carrusel principal
+    // Función para actualizar los indicadores del carrusel principal (scope Offices)
     function updateCarouselIndicators() {
-        const buttons = document.querySelectorAll('.carousel-btn');
+        const buttons = document.querySelectorAll('#offices-indicators .office-indicator');
         buttons.forEach((btn, index) => {
             if (index === currentOfficeIndex) {
                 btn.classList.remove('bg-gray-300');
@@ -343,8 +346,8 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
 
     // Inicializar el carrusel cuando se carga la página
     document.addEventListener('DOMContentLoaded', function() {
-        // Configurar los botones indicadores del carrusel principal
-        const carouselButtons = document.querySelectorAll('.carousel-btn');
+        // Configurar los botones indicadores del carrusel principal (solo Offices)
+        const carouselButtons = document.querySelectorAll('#offices-indicators .office-indicator');
         carouselButtons.forEach((btn, index) => {
             btn.addEventListener('click', () => changeOffice(index));
         });
