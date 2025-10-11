@@ -196,6 +196,22 @@ const reviews = [
                                     d="M9 5l7 7-7 7"></path>
                             </svg>
                         </button>
+
+                        <!-- Overlay de flechas móviles sobre el carrusel -->
+                        <div class="md:hidden absolute inset-0 z-[1000] pointer-events-none">
+                            <button onclick="previousReview();" aria-label="Anterior"
+                                class="absolute -left-1 top-1/2 -translate-y-1/2 p-0 bg-transparent border-0 cursor-pointer pointer-events-auto">
+                                <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button onclick="nextReview();" aria-label="Siguiente"
+                                class="absolute -right-1 top-1/2 -translate-y-1/2 p-0 bg-transparent border-0 cursor-pointer pointer-events-auto">
+                                <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
