@@ -256,7 +256,7 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
             <!-- Botones de navegación en la parte inferior -->
             <div class="flex justify-center mt-8 space-x-4" id="offices-indicators">
                 <button
-                    class="office-indicator w-4 h-4 rounded-full bg-blue-600 shadow-lg border-2 border-white transition-all duration-300 hover:bg-blue-700 hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"></button>
+                    class="office-indicator w-4 h-4 rounded-full bg-gray-300 shadow-lg border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
                 <button
                     class="office-indicator w-4 h-4 rounded-full bg-gray-300 shadow-md border-2 border-white transition-all duration-300 hover:bg-gray-400 hover:scale-110 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"></button>
                 <button
@@ -272,6 +272,10 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
     // Variables globales para el carrusel principal
     let currentOfficeIndex = 0;
     const totalOffices = 4;
+
+    // Auto-rotación del carrusel principal
+    let autoTimer = null;
+    const autoIntervalMs = 5000;
 
     // Variables para los carruseles de imágenes de cada oficina
     const imageIndexes = {
@@ -313,9 +317,12 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
         const buttons = document.querySelectorAll('#offices-indicators .office-indicator');
         buttons.forEach((btn, index) => {
             if (index === currentOfficeIndex) {
+                // Color activo explicitamente requerido: #90C044
                 btn.classList.remove('bg-gray-300');
-                btn.classList.add('bg-blue-600');
+                btn.classList.remove('bg-blue-600');
+                btn.style.backgroundColor = '#90C044';
             } else {
+                btn.style.backgroundColor = '';
                 btn.classList.remove('bg-blue-600');
                 btn.classList.add('bg-gray-300');
             }
@@ -354,6 +361,70 @@ import oficinaPereira02 from '../../assets/images/offices/Oficinapereira-02.jpg'
 
         // Inicializar el primer indicador como activo
         updateCarouselIndicators();
+
+        // Habilitar swipe táctil en móviles y arrastre en desktop para el carrusel de oficinas
+        const container = document.getElementById('carousel-container');
+        if (container) {
+            let startX = 0;
+            let isDragging = false;
+            const threshold = 50; // píxeles para cambiar de slide
+
+            const onTouchStart = (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                }
+            };
+            const onTouchMove = (e) => {
+                if (!isDragging) return;
+                // Prevenir el scroll vertical predominante cuando es un swipe horizontal
+                e.preventDefault();
+            };
+            const onTouchEnd = (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : startX;
+                const delta = endX - startX;
+                if (Math.abs(delta) > threshold) {
+                    // delta negativo: swipe a la izquierda -> siguiente oficina
+                    const direction = delta < 0 ? 1 : -1;
+                    changeOffice(currentOfficeIndex + direction);
+                }
+            };
+
+            // Eventos táctiles
+            container.addEventListener('touchstart', onTouchStart, { passive: false });
+            container.addEventListener('touchmove', onTouchMove, { passive: false });
+            container.addEventListener('touchend', onTouchEnd, { passive: false });
+
+            // Opcional: soporte de mouse para desktop
+            let mouseStartX = 0;
+            const onMouseDown = (e) => { isDragging = true; mouseStartX = e.clientX; };
+            const onMouseMove = (e) => { if (!isDragging) return; };
+            const onMouseUp = (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const delta = e.clientX - mouseStartX;
+                if (Math.abs(delta) > threshold) {
+                    const direction = delta < 0 ? 1 : -1;
+                    changeOffice(currentOfficeIndex + direction);
+                }
+            };
+            container.addEventListener('mousedown', onMouseDown);
+            container.addEventListener('mousemove', onMouseMove);
+            container.addEventListener('mouseup', onMouseUp);
+            container.addEventListener('mouseleave', onMouseUp);
+        }
+
+        // Configurar auto-rotación del carrusel de oficinas
+        const startAuto = () => {
+            if (autoTimer) clearInterval(autoTimer);
+            autoTimer = setInterval(() => {
+                const nextIndex = (currentOfficeIndex + 1) % totalOffices;
+                changeOffice(nextIndex);
+            }, autoIntervalMs);
+        };
+        startAuto();
     });
 
     // Hacer las funciones globales para que funcionen con onclick
