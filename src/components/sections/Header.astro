@@ -66,9 +66,11 @@ import logoSrc from '../../assets/logos/Logo.jpg';
                     </button>
                     <div class="dropdown-menu">
                         <div class="py-1" role="menu" aria-orientation="vertical">
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Salud</a>
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Vida</a>
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Autos</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Pólizas de salud</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Planes complementarios</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Seguros de vida</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Seguros para autos y motos</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Seguros para hogar</a>
                         </div>
                     </div>
                 </div>
@@ -83,8 +85,9 @@ import logoSrc from '../../assets/logos/Logo.jpg';
                     </button>
                     <div class="dropdown-menu">
                         <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Pensiones</a>
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">ARL</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Solo EPS o solo ARL</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">EPS + ARL + Pensión</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Plan completo de seguridad social</a>
                         </div>
                     </div>
                 </div>
@@ -99,10 +102,9 @@ import logoSrc from '../../assets/logos/Logo.jpg';
                     </button>
                     <div class="dropdown-menu">
                         <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Servicios
-                                corporativos</a>
-                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Planes
-                                grupales</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Intermediación en ARL</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Pólizas colectivas</a>
+                            <a href="#" class="block px-4 py-2 text-sm gray-text hover:text-servir-blue hover:bg-blue-50 transition duration-150">Trámites de seguridad social</a>
                         </div>
                     </div>
                 </div>
@@ -131,62 +133,68 @@ import logoSrc from '../../assets/logos/Logo.jpg';
         </div>
     </div>
 
-    <!-- Menú Móvil (Fuera de la estructura principal para cubrir toda la pantalla) -->
-    <div id="mobile-menu" class="hidden lg:hidden absolute top-20 w-full bg-white shadow-xl">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-servir-blue bg-blue-50">Inicio</a>
-
-            <!-- Acordeón Seguros -->
-            <div class="border-b border-gray-100">
-                <button id="mobile-seguros-btn"
-                    class="w-full text-left flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md">
-                    Seguros
-                    <iconify-icon icon="fa6-solid:chevron-down" class="icon w-4 h-4 transform transition-transform" id="mobile-seguros-icon"></iconify-icon>
+    <!-- Menú Móvil como Sidemenu con Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 z-[100] hidden lg:hidden opacity-0 transition-opacity duration-300">
+        <!-- Backdrop negro/transparente -->
+        <div id="mobile-backdrop" class="absolute inset-0 bg-black/50"></div>
+        <!-- Panel lateral -->
+        <div id="mobile-menu-panel" class="absolute inset-y-0 left-0 w-80 max-w-[85%] bg-white shadow-xl transform origin-left scale-x-0 transition-transform duration-300 ease-out flex flex-col h-dvh">
+            <!-- Header superior dentro del sidemenu: botón hamburguesa y logo -->
+            <div class="flex items-center space-x-3 px-3 py-3 border-b" style="border-color:#d6d2d2">
+                <button id="menu-button-inside" class="p-2 rounded-md hover:bg-gray-100 transition-colors flex  align-center">
+                    <iconify-icon width="20" icon="fa6-solid:bars" class="w-8 h-8 text-servir-blue"></iconify-icon>
                 </button>
-                <div id="mobile-seguros-content" class="hidden pl-4 pb-2 space-y-1">
-                    <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Salud</a>
-                    <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Vida</a>
-                    <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Autos</a>
-                </div>
-            </div>
-
-            <!-- Acordeón Seguridad Social -->
-            <div class="border-b border-gray-100">
-                <button id="mobile-seguridad-btn"
-                    class="w-full text-left flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md">
-                    Seguridad social
-                    <iconify-icon icon="fa6-solid:chevron-down" class="icon w-4 h-4 transform transition-transform" id="mobile-seguridad-icon"></iconify-icon>
-                </button>
-                <div id="mobile-seguridad-content" class="hidden pl-4 pb-2 space-y-1">
-                    <a href="#"
-                        class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Pensiones</a>
-                    <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">ARL</a>
-                </div>
-            </div>
-
-            <!-- Acordeón Empresas -->
-            <div class="border-b border-gray-100">
-                <button id="mobile-empresas-btn"
-                    class="w-full text-left flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md">
-                    Empresas
-                    <iconify-icon icon="fa6-solid:chevron-down" class="icon w-4 h-4 transform transition-transform" id="mobile-empresas-icon"></iconify-icon>
-                </button>
-                <div id="mobile-empresas-content" class="hidden pl-4 pb-2 space-y-1">
-                    <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Servicios
-                        corporativos</a>
-                    <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Planes
-                        grupales</a>
-                </div>
-            </div>
-
-            <!-- Botón Contáctanos para Móvil -->
-            <div class="mt-4 px-3">
-                <a href="#"
-                    class="block w-full text-center bg-servir-blue text-white px-12 py-4 rounded-full font-semibold hover:transition-all duration-300 transform hover:scale-105 active:scale-95">
-                    Contáctanos
+                <a href="#" class="flex items-center" style="margin-left:13%">
+                    <Image src={logoSrc} alt="ServirPRO Seguros" class="h-10 w-auto" />
                 </a>
             </div>
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex-1 overflow-y-auto">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-servir-blue bg-blue-50">Inicio</a>
 
+                <!-- Acordeón Seguros -->
+                <div class="border-b border-gray-100">
+                    <button id="mobile-seguros-btn" class="w-full text-left flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md">
+                        Seguros
+                        <iconify-icon icon="fa6-solid:chevron-down" class="icon w-4 h-4 transform transition-transform" id="mobile-seguros-icon"></iconify-icon>
+                    </button>
+                    <div id="mobile-seguros-content" class="hidden pl-4 pb-2 space-y-1">
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Pólizas de salud</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Planes complementarios</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Seguros de vida</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Seguros para autos y motos</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Seguros para hogar</a>
+                    </div>
+                </div>
+
+                <!-- Acordeón Seguridad Social -->
+                <div class="border-b border-gray-100">
+                    <button id="mobile-seguridad-btn" class="w-full text-left flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md">
+                        Seguridad social
+                        <iconify-icon icon="fa6-solid:chevron-down" class="icon w-4 h-4 transform transition-transform" id="mobile-seguridad-icon"></iconify-icon>
+                    </button>
+                    <div id="mobile-seguridad-content" class="hidden pl-4 pb-2 space-y-1">
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Solo EPS o solo ARL</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">EPS + ARL + Pensión</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Plan completo de seguridad social</a>
+                    </div>
+                </div>
+
+                <!-- Acordeón Empresas -->
+                <div class="border-b border-gray-100">
+                    <button id="mobile-empresas-btn" class="w-full text-left flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md">
+                        Empresas
+                        <iconify-icon icon="fa6-solid:chevron-down" class="icon w-4 h-4 transform transition-transform" id="mobile-empresas-icon"></iconify-icon>
+                    </button>
+                    <div id="mobile-empresas-content" class="hidden pl-4 pb-2 space-y-1">
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Intermediación en ARL</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Pólizas colectivas</a>
+                        <a href="#" class="block px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded-md">Trámites de seguridad social</a>
+                    </div>
+                </div>
+                <!-- Botón Contáctanos: al mismo nivel de los menús, justo debajo -->
+                <div class="pt-6">
+                    <a href="#" class="block w-full text-center bg-servir-blue text-white px-12 py-4 rounded-full font-semibold hover:transition-all duration-300 transform hover:scale-105 active:scale-95">Contáctanos</a>
+                </div>
+            </div>
         </div>
     </div>
