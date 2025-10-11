@@ -80,13 +80,13 @@ function processTitle(title: string) {
 const titleParts = processTitle(title);
 ---
 
-<div class={`group cursor-pointer transform transition-all duration-300 md:hover:scale-110 ${className}`}>
-  <div class="bg-white rounded-full w-32 h-32 md:w-40 md:h-40 mx-auto flex flex-col items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 p-4">
+<div class={`group cursor-pointer transform transition-all duration-300 md:hover:scale-110 -mx-1 md:mx-0 ${className}`}>
+  <div class="bg-white rounded-full w-40 h-40 md:w-44 md:h-44 mx-auto flex flex-col items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 p-3 md:p-4">
     <div class="mb-2">
       <Image 
         src={getIconImage(iconType)} 
         alt={`${title} icon`} 
-        class="w-10 h-10 md:w-12 md:h-12"
+        class="w-14 h-14 md:w-16 md:h-16"
         loading="lazy"
       />
     </div>
