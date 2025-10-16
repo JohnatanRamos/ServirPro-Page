@@ -9,7 +9,7 @@ const mobileSlides = [heroImageMobile, heroImageMobile];
 ---
 
 <!-- Sección Principal (Hero) -->
-<section class="relative h-[500px] md:h-[600px] overflow-hidden">
+<section class="relative h-[84vh] md:h-[600px] overflow-hidden">
     <!-- Carrusel de fondo para desktop -->
     <div class="absolute inset-0 hidden md:block carousel desktop">
         {desktopSlides.map((img, idx) => (
@@ -75,11 +75,14 @@ const mobileSlides = [heroImageMobile, heroImageMobile];
                   </h1>
                 </div>
 
-                <button
-                    class="text-black text-base md:text-lg lg:text-xl font-bold px-16 md:px-24 lg:px-32 py-3 md:py-4 rounded-full transition duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
+                <a
+                    href="https://wa.me/573193029089"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block text-black text-base md:text-lg lg:text-xl font-bold px-16 md:px-24 lg:px-32 py-3 md:py-4 rounded-full transition duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
                     style="background-color: #85C657;">
                     Cotizar seguro
-                </button>
+                </a>
             </div>
         </div>
     </div>
