@@ -21,7 +21,7 @@ import logoSrc from '../../assets/logos/Logo.jpg';
 
 <style>
   @keyframes marquee {
-    0% { transform: translateX(0); }
+    0%, 16.67% { transform: translateX(0); } /* 5 segundos de pausa (5/30 = 16.67%) */
     100% { transform: translateX(-50%); }
   }
   .marquee-track {
