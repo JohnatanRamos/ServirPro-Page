@@ -16,9 +16,10 @@ export interface Props {
   iconType: 'health' | 'life' | 'auto' | 'home' | 'eps' | 'security' | 'business' | 'group';
   title: string;
   className?: string;
+  href?: string;
 }
 
-const { iconType, title, className = '' } = Astro.props;
+const { iconType, title, className = '', href = '' } = Astro.props;
 
 // Función para obtener la imagen según el tipo de icono
 function getIconImage(type: string) {
@@ -80,7 +81,7 @@ function processTitle(title: string) {
 const titleParts = processTitle(title);
 ---
 
-<div class={`group cursor-pointer transform transition-all duration-300 md:hover:scale-110 -mx-1 md:mx-0 ${className}`}>
+<a href={href} class={`group cursor-pointer transform transition-all duration-300 md:hover:scale-110 -mx-1 md:mx-0 ${className}`} aria-label={title}>
   <div class="bg-white rounded-full w-40 h-40 md:w-44 md:h-44 mx-auto flex flex-col items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 p-3 md:p-4">
     <div class="mb-2">
       <Image 
@@ -97,4 +98,4 @@ const titleParts = processTitle(title);
       <span class="font-bold">{titleParts.keyword}</span>
     </h3>
   </div>
-</div>
+</a>
