@@ -1,10 +1,13 @@
 ---
+import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/sections/Header.astro';
 import Footer from '../components/sections/Footer.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
 import FamilySection from '../components/sections/FamilySection.astro';
 import Hero from '../components/sections/HealthServices/Hero.astro';
+import HealthDescription from '../components/sections/HealthServices/HealthDescription.astro';
+import HealthDetail from '../components/sections/HealthServices/HealthDetail.astro';
 
 ---
 
@@ -12,6 +15,8 @@ import Hero from '../components/sections/HealthServices/Hero.astro';
   <Header />
   <main >
     <Hero/>
+    <HealthDescription/>
+    <HealthDetail/>
 		<Testimonials />
 		<FamilySection />
   </main>

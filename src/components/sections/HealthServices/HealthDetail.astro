@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import BenefitItem from './BenefitItem.astro';
+
+// Imagen del título
+import tituloImg from '../../../assets/images/polizas-salud/poliza-titulo.webp';
+
+// Iconos
+import icon1 from '../../../assets/iconos/polizas-salud/icon-especialista.svg';
+import icon2 from '../../../assets/iconos/polizas-salud/icon-autorizaciones.svg';
+import icon3 from '../../../assets/iconos/polizas-salud/icon-habitacion.svg';
+import icon4 from '../../../assets/iconos/polizas-salud/icon-habitacion.svg';
+import icon5 from '../../../assets/iconos/polizas-salud/icon-viaje.svg';
+import icon6 from '../../../assets/iconos/polizas-salud/icon-ambulancia.svg';
+
+---
+
+<section class="w-full flex flex-col items-center justify-center text-center px-6 py-16 md:py-24 bg-white">
+  <!-- Imagen del título -->
+  <div class="mb-12">
+    <Image src={tituloImg} alt="Una póliza de salud te brinda" class="mx-auto w-[300px] md:w-[420px]"/>
+  </div>
+
+  <!-- Beneficios -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 max-w-5xl mb-10">
+    <BenefitItem 
+      icon={icon1} 
+      alt="Especialistas" 
+      text="Acceso rápido e ilimitado a especialistas de primer nivel." 
+    />
+
+    <BenefitItem 
+      icon={icon2} 
+      alt="Autorizaciones" 
+      text="Autorizaciones rápidas para exámenes y procedimientos médicos." 
+    />
+
+    <BenefitItem 
+      icon={icon3} 
+      alt="Habitación" 
+      text="Atención ilimitada en las mejores clínicas y hospitales del país." 
+    />
+
+
+    <BenefitItem 
+      icon={icon3} 
+      alt="Habitación" 
+      text="Habitación preferencial en caso de hospitalización." 
+    />
+
+    <BenefitItem 
+      icon={icon5} 
+      alt="Cobertura internacional" 
+      text="Cobertura internacional en tus viajes al exterior." 
+    />
+    
+    <BenefitItem 
+      icon={icon6} 
+      alt="Domiciliaria" 
+      text="Atención domiciliaria de urgencias, sin salir de casa." 
+    />
+  </div>
+
+  <!-- Botón Cotizar -->
+  <button class="bg-[#8cc63f] text-[#1a1a1a] font-semibold px-8 py-3 rounded-full hover:bg-[#7bb534] transition mb-12">
+    Cotizar póliza
+  </button>
+
+  <!-- Pasos -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full mb-10 relative">
+    <!-- Paso 1 -->
+    <div class="relative bg-[#e6e6e6] rounded-2xl p-6 pt-10 text-center shadow-sm flex flex-col items-center">
+      <h3 class="absolute -top-6 text-5xl font-bold text-[#2b89c6]">1.</h3>
+      <p class="font-medium text-gray-800">Cotiza tu póliza en minutos.</p>
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="relative bg-[#e6e6e6] rounded-2xl p-6 pt-10 text-center shadow-sm flex flex-col items-center">
+      <h3 class="absolute -top-6 text-5xl font-bold text-[#2b89c6]">2.</h3>
+      <p class="font-medium text-gray-800">Elige tu póliza de preferencia.</p>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="relative bg-[#e6e6e6] rounded-2xl p-6 pt-10 text-center shadow-sm flex flex-col items-center">
+      <h3 class="absolute -top-6 text-5xl font-bold text-[#2b89c6]">3.</h3>
+      <p class="font-medium text-gray-800">Disfruta de un servicio exclusivo y tu tranquilidad total.</p>
+    </div>
+  </div>
+
+
+  <!-- Segundo botón -->
+  <button class="bg-[#8cc63f] text-[#1a1a1a] font-semibold px-8 py-3 rounded-full hover:bg-[#7bb534] transition">
+    Cotizar póliza
+  </button>
+</section>
