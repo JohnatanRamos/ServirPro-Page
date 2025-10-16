@@ -32,12 +32,12 @@ import OfficeCard from "../ui/OfficeCard.astro";
             <!-- Contenedor del carrusel -->
             <div class="overflow-hidden" id="carousel-container">
               <div id="offices-carousel" class="flex transition-transform duration-300 ease-in-out">
-                <OfficeCard
+                <!-- <OfficeCard
                     officeKey="envigado"
                     title="CC. Viva Envigado"
                     images={{ src1: oficinaPereira01, src2: oficinaPereira02, alt1: 'CC. Viva Envigado 1', alt2: 'CC. Viva Envigado 2' }}
                     mapUrl="https://maps.app.goo.gl/4ik33Hfv3dbTHbFv9"
-                />
+                /> -->
                 <OfficeCard
                     officeKey="medellin"
                     title="Oficina en Medellín"
@@ -85,7 +85,7 @@ import OfficeCard from "../ui/OfficeCard.astro";
 
     // Auto-rotación del carrusel principal
     let autoTimer = null;
-    const autoIntervalMs = 5000;
+    const autoIntervalMs = 7000;
 
     // Variables para los carruseles de imágenes de cada oficina
     const imageIndexes = {
