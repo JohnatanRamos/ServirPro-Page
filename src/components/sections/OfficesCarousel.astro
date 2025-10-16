@@ -13,7 +13,7 @@ import OfficeCard from "../ui/OfficeCard.astro";
 ---
 
 <!-- Contamos con oficinas en -->
-<section class="bg-servir-blue py-16 md:py-20 relative">
+<section id="offices-section" class="bg-servir-blue py-16 md:py-20 relative">
     <div class="max-w-7xl mx-auto px-4">
         <!-- Título con fondo blanco redondo en la parte superior -->
         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -84,6 +84,7 @@ import OfficeCard from "../ui/OfficeCard.astro";
     // Auto-rotación del carrusel principal
     let autoTimer = null;
     const autoIntervalMs = 7000;
+    let isCarouselVisible = false;
 
     // Variables para los carruseles de imágenes de cada oficina
     const imageIndexes = {
@@ -91,6 +92,27 @@ import OfficeCard from "../ui/OfficeCard.astro";
         'bogota': 0,
         'pereira': 0
     };
+
+    // Función para iniciar la auto-rotación (simplificada)
+    function startAutoRotation() {
+        if (autoTimer) {
+            clearInterval(autoTimer);
+        }
+        if (isCarouselVisible) {
+            autoTimer = setInterval(() => {
+                const nextIndex = (currentOfficeIndex + 1) % totalOffices;
+                changeOffice(nextIndex);
+            }, autoIntervalMs);
+        }
+    }
+
+    // Función para pausar la auto-rotación (simplificada)
+    function pauseAutoRotation() {
+        if (autoTimer) {
+            clearInterval(autoTimer);
+            autoTimer = null;
+        }
+    }
 
     // Función para cambiar de oficina
     function changeOffice(index) {
@@ -158,16 +180,68 @@ import OfficeCard from "../ui/OfficeCard.astro";
         imageCarousel.style.transform = `translateX(${translateX}%)`;
     }
 
+    // Configurar Intersection Observer para detectar cuando la sección es visible
+    function setupIntersectionObserver() {
+        const officesSection = document.querySelector('#offices-section');
+        
+        if (!officesSection) {
+            return;
+        }
+
+
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0]; // Solo hay una entrada
+  
+            
+            if (entry.isIntersecting) {
+                // La sección es visible, iniciar auto-rotación
+                isCarouselVisible = true;
+                // Limpiar cualquier timer existente
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                }
+                // Iniciar nuevo timer
+                autoTimer = setInterval(() => {
+                    const nextIndex = (currentOfficeIndex + 1) % totalOffices;
+                    changeOffice(nextIndex);
+                }, autoIntervalMs);
+            } else {
+                // La sección no es visible, pausar auto-rotación
+                isCarouselVisible = false;
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+        }, {
+            // Configurar el threshold para que se active cuando cualquier parte de la sección sea visible
+            threshold: 0.1,
+            // Agregar un margen para que se active antes
+            rootMargin: '100px 0px 100px 0px'
+        });
+
+        observer.observe(officesSection);
+    }
+
     // Inicializar el carrusel cuando se carga la página
     document.addEventListener('DOMContentLoaded', function() {
         // Configurar los botones indicadores del carrusel principal (solo Offices)
         const carouselButtons = document.querySelectorAll('#offices-indicators .office-indicator');
         carouselButtons.forEach((btn, index) => {
-            btn.addEventListener('click', () => changeOffice(index));
+            btn.addEventListener('click', () => {
+                changeOffice(index);
+                // Reiniciar el timer después de una interacción manual
+                if (isCarouselVisible) {
+                    startAutoRotation();
+                }
+            });
         });
 
         // Inicializar el primer indicador como activo
         updateCarouselIndicators();
+
+        // Configurar el Intersection Observer
+        setupIntersectionObserver();
 
         // Habilitar swipe táctil en móviles y arrastre en desktop para el carrusel de oficinas
         const container = document.getElementById('carousel-container');
@@ -196,6 +270,10 @@ import OfficeCard from "../ui/OfficeCard.astro";
                     // delta negativo: swipe a la izquierda -> siguiente oficina
                     const direction = delta < 0 ? 1 : -1;
                     changeOffice(currentOfficeIndex + direction);
+                    // Reiniciar el timer después de una interacción manual
+                    if (isCarouselVisible) {
+                        startAutoRotation();
+                    }
                 }
             };
 
@@ -215,6 +293,10 @@ import OfficeCard from "../ui/OfficeCard.astro";
                 if (Math.abs(delta) > threshold) {
                     const direction = delta < 0 ? 1 : -1;
                     changeOffice(currentOfficeIndex + direction);
+                    // Reiniciar el timer después de una interacción manual
+                    if (isCarouselVisible) {
+                        startAutoRotation();
+                    }
                 }
             };
             container.addEventListener('mousedown', onMouseDown);
@@ -222,16 +304,6 @@ import OfficeCard from "../ui/OfficeCard.astro";
             container.addEventListener('mouseup', onMouseUp);
             container.addEventListener('mouseleave', onMouseUp);
         }
-
-        // Configurar auto-rotación del carrusel de oficinas
-        const startAuto = () => {
-            if (autoTimer) clearInterval(autoTimer);
-            autoTimer = setInterval(() => {
-                const nextIndex = (currentOfficeIndex + 1) % totalOffices;
-                changeOffice(nextIndex);
-            }, autoIntervalMs);
-        };
-        startAuto();
     });
 
     // Hacer las funciones globales para que funcionen con onclick
