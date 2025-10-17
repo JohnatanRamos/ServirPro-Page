@@ -11,8 +11,8 @@ interface Props {
 const { icon, alt, text, colSpan = false } = Astro.props;
 ---
 
-<div class={`flex items-center gap-4 pb-3 border-b-2 border-[#2b5c8f] ${colSpan ? 'md:col-span-2' : ''}`}>
-  <Image src={icon} alt={alt} class="w-8 h-8 shrink-0 text-[#2b5c8f]" />
+<div class={`flex items-center gap-4 pb-3 border-b-2 border-servir-blue-banner ${colSpan ? 'md:col-span-2' : ''}`}>
+  <Image src={icon} alt={alt} class="w-8 h-8 shrink-0 text-servir-blue-banner" />
   <p class="text-left font-semibold text-gray-800">
     {text}
   </p>
