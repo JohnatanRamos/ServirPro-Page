@@ -1,24 +1,25 @@
 ---
-import '../styles/global.css';
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/sections/Header.astro';
-import Footer from '../components/sections/Footer.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
-import ContactSection from '../components/sections/HealthServices/ContactSection.astro';
-import Hero from '../components/sections/HealthServices/Hero.astro';
-import HealthDescription from '../components/sections/HealthServices/HealthDescription.astro';
-import HealthDetail from '../components/sections/HealthServices/HealthDetail.astro';
-
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/sections/Header.astro";
+import Footer from "../components/sections/Footer.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import ContactSection from "../components/sections/HealthServices/ContactSection.astro";
+import Hero from "../components/sections/HealthServices/Hero.astro";
+import HealthDescription from "../components/sections/HealthServices/HealthDescription.astro";
+import HealthDetail from "../components/sections/HealthServices/HealthDetail.astro";
+import BannerServirProLocation from "../components/sections/commons/BannerServirProLocation.astro";
 ---
 
 <Layout title="Servicios | ServirPRO">
   <Header />
-  <main >
-    <Hero/>
-    <HealthDescription/>
-    <HealthDetail/>
-		<Testimonials />
+  <main class="bg-white">
+    <Hero />
+    <HealthDescription />
+    <HealthDetail />
+    <BannerServirProLocation/>
+    <Testimonials />
     <ContactSection />
   </main>
   <Footer />
- </Layout>
+</Layout>
