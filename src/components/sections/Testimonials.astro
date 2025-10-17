@@ -3,6 +3,8 @@
 import ReviewCard from '../ui/ReviewCard.astro';
 import { Image } from 'astro:assets';
 import googleImage from '../../assets/iconos/google_icon_review_completo.svg';
+import clientRecommendationDesktop from '../../assets/images/client-recomendation.webp';
+import clientRecommendationMobile from '../../assets/images/client-recomendation_mobile.webp';
 
 // Datos de los testimonios reales de Google Reviews
 const reviews = [
@@ -101,17 +103,34 @@ const reviews = [
 ---
 
 <!-- Sección de Testimonios -->
-<section class="py-16 bg-white">
+<section class="bg-white pb-8">
+            <!-- Imagen de título para desktop -->
+            <div class="hidden md:block mb-12">
+                <Image 
+                    src={clientRecommendationDesktop} 
+                    alt="Lo que dicen nuestros clientes" 
+                    class="w-full h-auto mx-auto"
+                    loading="lazy"
+                />
+            </div>
+            
+            <!-- Imagen de título para mobile -->
+            <div class="md:hidden mb-12">
+                <Image 
+                    src={clientRecommendationMobile} 
+                    alt="Lo que dicen nuestros clientes" 
+                    class="w-full h-auto mx-auto"
+                    loading="lazy"
+                />
+            </div>
     <div class="container mx-auto px-4">
         <div class="max-w-9xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray">Lo que dicen nuestros clientes</h2>
-
             <!-- Video de YouTube -->
             <div class="relative w-full max-w-3xl mx-auto mb-16">
                 <div
                     class="aspect-w-16 aspect-h-9 relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg">
                     <iframe class="absolute top-0 left-0 w-full h-full"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonios de clientes"
+                        src="https://www.youtube.com/embed/6kK-4qD5k_8?si=eBhwNXLzblJbdqwy" title="Testimonios de clientes"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
